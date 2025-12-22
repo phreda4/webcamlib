@@ -1,0 +1,4 @@
+C:/Users/phr3/python/webcam/webcam/WebcamLib_Ultimate/out/build/x64-Debug/CMakeFiles/webcam.dir
+C:/Users/phr3/python/webcam/webcam/WebcamLib_Ultimate/out/build/x64-Debug/CMakeFiles/demo_app.dir
+C:/Users/phr3/python/webcam/webcam/WebcamLib_Ultimate/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/phr3/python/webcam/webcam/WebcamLib_Ultimate/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
