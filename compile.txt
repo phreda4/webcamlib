@@ -87,15 +87,4 @@ sudo ldconfig
 ./bin/demo_app
 
 
-Resumen de archivos generados
-Sistema Operativo
-Archivo de Librería Dinámica
-Archivo del Ejecutable
-Windows
-webcam.dll (y webcam.lib para enlazar)
-demo_app.exe
-Linux
-libwebcam.so
-demo_app
-
 
