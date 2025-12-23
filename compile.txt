@@ -1,0 +1,101 @@
+Guía de Compilación 1: Windows (Visual Studio 2022)
+
+Método A: Usando la Interfaz Gráfica (Recomendado)
+Abre Visual Studio 2022.
+Selecciona "Abrir una carpeta local" (Open a local folder).
+Navega y selecciona la carpeta WebcamLib_Ultimate que generó el script de Python.
+Visual Studio detectará automáticamente el archivo CMakeLists.txt.
+Espera a que termine la configuración (verás la barra de progreso abajo).
+En el menú superior, verás un desplegable que dice "Startup Item". Selecciona demo_app.exe.
+Presiona F7 (o menú Compilar -> Compilar Todo).
+Presiona F5 para ejecutar.
+Método B: Generar Solución (.sln) clásica
+Si prefieres tener el archivo .sln de toda la vida:
+Abre una terminal (PowerShell o CMD).
+Ve a la carpeta del proyecto.
+Ejecuta:
+PowerShell
+mkdir build
+cd build
+cmake .. -G "Visual Studio 17 2022"
+
+
+Ahora tendrás un archivo WebcamLib.sln dentro de la carpeta build.
+Abre ese archivo con Visual Studio, haz clic derecho en demo_app en el explorador de soluciones y elige "Set as Startup Project" (Establecer como proyecto de inicio).
+Dale al botón "Play" (Depurar local de Windows).
+Nota: El CMake está configurado para copiar automáticamente la webcam.dll al lado del ejecutable cada vez que compiles.
+Guía de Compilación 2: Linux
+En Linux el proceso es el estándar de la industria.
+Abre tu terminal.
+Instala las herramientas (si no las tienes):
+Bash
+sudo apt-get update
+sudo apt-get install build-essential cmake
+
+
+Compila:
+Bash
+cd WebcamLib_Ultimate
+mkdir build
+cd build
+cmake ..
+make
+
+
+Ejecuta:
+Bash
+./bin/demo_app
+
+
+Permisos en Linux: Si te da error al abrir la cámara, recuerda que tu usuario debe tener permisos. Ejecuta sudo usermod -a -G video $USER y reinicia tu sesión.
+
+---------------------------------------
+
+
+En Linux, las librerías dinámicas no se llaman .dll, sino Shared Objects y tienen la extensión .so.
+Gracias a la línea add_library(webcam SHARED ...) que pusimos en el CMakeLists.txt, CMake detecta que estás en Linux y automáticamente hace lo siguiente:
+Nombre del archivo: Le agrega el prefijo lib automáticamente. Tu librería se llamará libwebcam.so.
+Ubicación: Según el script que te di, se guardará en la carpeta build/bin/.
+Diferencia importante al ejecutar (El error común)
+A diferencia de Windows, que busca las .dll en la misma carpeta del ejecutable automáticamente, Linux NO busca librerías en la carpeta actual por defecto.
+Si intentas correr el programa así nada más:
+
+Bash
+
+./bin/demo_app
+
+Es muy probable que recibas un error como:
+error while loading shared libraries: libwebcam.so: cannot open shared object file: No such file or directory
+¿Cómo solucionarlo?
+Tienes dos opciones para probar tu programa en Linux:
+Opción A: Decirle a Linux dónde está la librería (Recomendado para desarrollo)
+Usa la variable de entorno LD_LIBRARY_PATH apuntando a la carpeta actual (.):
+
+Bash
+
+cd build/bin
+LD_LIBRARY_PATH=. ./demo_app
+
+
+Opción B: Instalar la librería en el sistema (Para producción)
+Si quisieras que funcione siempre, copiarías el archivo a las carpetas del sistema:
+
+Bash
+
+sudo cp bin/libwebcam.so /usr/lib/
+sudo ldconfig
+./bin/demo_app
+
+
+Resumen de archivos generados
+Sistema Operativo
+Archivo de Librería Dinámica
+Archivo del Ejecutable
+Windows
+webcam.dll (y webcam.lib para enlazar)
+demo_app.exe
+Linux
+libwebcam.so
+demo_app
+
+
