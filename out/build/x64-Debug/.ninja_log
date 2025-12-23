@@ -1,7 +1,0 @@
-# ninja log v6
-12	65	7881281394470203	CMakeFiles/demo_app.dir/examples/main.c.obj	a2933868371a13ce
-753	947	7881281401952267	bin/demo_app.exe	92027df1a4ac34d5
-9	67	7881281394470203	CMakeFiles/webcam.dir/src/webcam_common.c.obj	edb41b2c454862de
-11	538	7881281394470203	CMakeFiles/webcam.dir/src/webcam_win.cpp.obj	fb7ce444e220427a
-538	753	7881281401767079	bin/webcam.dll	a7aeb319490d297c
-538	753	7881281401767079	lib/webcam.lib	a7aeb319490d297c

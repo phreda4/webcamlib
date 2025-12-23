@@ -10,8 +10,6 @@
 #include <linux/videodev2.h>
 #include <errno.h>
 
-extern void webcam_log(const char *format, ...);
-
 struct Webcam {
     int fd;
     int actual_width;

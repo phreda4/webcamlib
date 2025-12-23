@@ -14,8 +14,6 @@
 #pragma comment(lib, "strmiids.lib")
 #pragma comment(lib, "shlwapi.lib")
 
-extern "C" void webcam_log(const char *format, ...);
-
 template <class T> void SafeRelease(T **ppT) {
     if (*ppT) { (*ppT)->Release(); *ppT = NULL; }
 }
